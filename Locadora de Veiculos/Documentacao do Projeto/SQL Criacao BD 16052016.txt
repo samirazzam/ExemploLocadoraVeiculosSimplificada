@@ -1,0 +1,3 @@
+create database locadoraveiculos;
+
+use locadoraveiculos;
