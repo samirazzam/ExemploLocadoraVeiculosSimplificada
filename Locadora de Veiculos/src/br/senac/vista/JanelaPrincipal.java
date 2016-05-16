@@ -20,6 +20,7 @@ public class JanelaPrincipal extends JFrame{
 	private JMenuItem subMenuCadastroCliente, subMenuCadastroVeiculo, subMenuLocacao, subMenuDevolucao, subMenuSair, subMenuSobre;
 	private JDesktopPane painelDesktop;
 	private Image imagemFundo;
+	private CadastroCliente telaCadastroCliente;
 	
 	public JanelaPrincipal() {
 		setTitle("Sistema de locação de veículos - LocaFácil");
@@ -91,9 +92,21 @@ public class JanelaPrincipal extends JFrame{
 	private class CliqueListener implements ActionListener{
 
 		@Override
-		public void actionPerformed(ActionEvent e) {
-			// TODO Auto-generated method stub
+		public void actionPerformed(ActionEvent evento) {
+			
+			if(evento.getSource() == subMenuCadastroCliente){
+				if(telaCadastroCliente == null){
+					telaCadastroCliente = new CadastroCliente();
+					painelDesktop.add(telaCadastroCliente);
+					telaCadastroCliente.setVisible(true);
+				}else{
+					telaCadastroCliente.setVisible(true);
+					painelDesktop.moveToFront(telaCadastroCliente);
+				}
+			}else{
+				//outro if
+			}
 
-		}
+		}//fim do actioPerformed
 	}//fim da inner class
 }//fim da classe
