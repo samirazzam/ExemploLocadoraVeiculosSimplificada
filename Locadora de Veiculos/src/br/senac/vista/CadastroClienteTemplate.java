@@ -13,12 +13,12 @@ public abstract class CadastroClienteTemplate extends JInternalFrame{
 	
 	protected JLabel rotNome, rotCNH, rotValidadeCNH;
 	protected JTextField cxNome, cxCNH, cxValidadeCNH;
-	protected JButton btnFechar;
+	protected JButton btnSair;
 	protected JPanel painelSuperior, painelInferior;
 	
 	public CadastroClienteTemplate(String nomeTela) {
 		setTitle(nomeTela);
-		setSize(600,200);
+		setSize(650,200);
 		setLocation(0, 0);
 		setIconifiable(true);
 		setClosable(true);
@@ -32,7 +32,7 @@ public abstract class CadastroClienteTemplate extends JInternalFrame{
 		cxCNH = new JTextField("");
 		cxValidadeCNH = new JTextField("");
 		
-		btnFechar = new JButton("Sair");
+		btnSair = new JButton("Sair");
 		
 		painelSuperior = new JPanel();
 		painelInferior = new JPanel();
@@ -69,6 +69,7 @@ public abstract class CadastroClienteTemplate extends JInternalFrame{
 	}//fim do método limparCampos
 	
 	protected void fechar(){
+		desabilitaCampos();
 		this.hide();
 	}//fim do método fechar
 	

@@ -93,7 +93,8 @@ public class JanelaPrincipal extends JFrame{
 
 		@Override
 		public void actionPerformed(ActionEvent evento) {
-			
+			//Fazendo os comandos if simplificados, mas não é a forma indicada!
+			//1º if
 			if(evento.getSource() == subMenuCadastroCliente){
 				if(telaCadastroCliente == null){
 					telaCadastroCliente = new CadastroCliente();
@@ -103,10 +104,16 @@ public class JanelaPrincipal extends JFrame{
 					telaCadastroCliente.setVisible(true);
 					painelDesktop.moveToFront(telaCadastroCliente);
 				}
-			}else{
-				//outro if
+			}
+			//2º if
+			if(evento.getSource() == subMenuSobre){
+					JOptionPane.showMessageDialog(painelDesktop, "Sistema Biblioteca \n" +"Versão 1.00");
 			}
 
+			//3º if
+			if(evento.getSource() == subMenuSair){
+				sairPrograma();
+			}
 		}//fim do actioPerformed
 	}//fim da inner class
 }//fim da classe
