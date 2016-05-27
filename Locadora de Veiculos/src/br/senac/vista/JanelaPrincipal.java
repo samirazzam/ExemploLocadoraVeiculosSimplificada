@@ -16,11 +16,13 @@ import javax.swing.JOptionPane;
 public class JanelaPrincipal extends JFrame{
 
 	private JMenuBar barraMenu;
-	private JMenu menuCadastro, menuLocacao, menuMais;
-	private JMenuItem subMenuCadastroCliente, subMenuCadastroVeiculo, subMenuLocacao, subMenuDevolucao, subMenuSair, subMenuSobre;
+	private JMenu menuCadastro, menuLocacao, menuMais, menuConsulta;
+	private JMenuItem subMenuCadastroCliente, subMenuCadastroVeiculo, subMenuLocacao, subMenuDevolucao, subMenuSair, subMenuSobre, subMenuConsultarCliente, subMenuConsultarVeiculo;
 	private JDesktopPane painelDesktop;
 	private Image imagemFundo;
 	private CadastroCliente telaCadastroCliente;
+	private CadastroVeiculo telaCadastroVeiculo;
+	private PesquisaCliente telaPesquisaCliente;
 	
 	public JanelaPrincipal() {
 		setTitle("Sistema de locação de veículos - LocaFácil");
@@ -48,8 +50,10 @@ public class JanelaPrincipal extends JFrame{
 		menuCadastro = new JMenu("Cadastros");
 		menuLocacao = new JMenu("Locação de veículos");
 		menuMais = new JMenu("Mais...");
+		menuConsulta = new JMenu("Consultas/Alterações");
 		barraMenu.add(menuCadastro);
 		barraMenu.add(menuLocacao);
+		barraMenu.add(menuConsulta);
 		barraMenu.add(menuMais);
 		
 		subMenuCadastroCliente = new JMenuItem("Cadastro de clientes");
@@ -58,6 +62,8 @@ public class JanelaPrincipal extends JFrame{
 		subMenuDevolucao = new JMenuItem("Devolução de veículo");
 		subMenuSair = new JMenuItem("Sair do programa");
 		subMenuSobre = new JMenuItem("Sobre");
+		subMenuConsultarCliente = new JMenuItem("Pesquisar cliente");
+		subMenuConsultarVeiculo = new JMenuItem("Pesquisar veiculo");
 		
 		menuCadastro.add(subMenuCadastroCliente);
 		menuCadastro.addSeparator();
@@ -68,6 +74,9 @@ public class JanelaPrincipal extends JFrame{
 		menuMais.add(subMenuSobre);
 		menuMais.addSeparator();
 		menuMais.add(subMenuSair);
+		menuConsulta.add(subMenuConsultarCliente);
+		menuConsulta.addSeparator();
+		menuConsulta.add(subMenuConsultarVeiculo);
 		
 		//Configurando os ouvintes
 		CliqueListener ouvinte = new CliqueListener();
@@ -78,6 +87,8 @@ public class JanelaPrincipal extends JFrame{
 		subMenuDevolucao.addActionListener(ouvinte);
 		subMenuSobre.addActionListener(ouvinte);
 		subMenuSair.addActionListener(ouvinte);
+		subMenuConsultarCliente.addActionListener(ouvinte);
+		subMenuConsultarVeiculo.addActionListener(ouvinte);
 		
 	}//fim do construtor da classe
 	
@@ -94,7 +105,7 @@ public class JanelaPrincipal extends JFrame{
 		@Override
 		public void actionPerformed(ActionEvent evento) {
 			//Fazendo os comandos if simplificados, mas não é a forma indicada!
-			//1º if
+			//1º if - Chamar tela Cadastro cliente
 			if(evento.getSource() == subMenuCadastroCliente){
 				if(telaCadastroCliente == null){
 					telaCadastroCliente = new CadastroCliente();
@@ -105,15 +116,41 @@ public class JanelaPrincipal extends JFrame{
 					painelDesktop.moveToFront(telaCadastroCliente);
 				}
 			}
-			//2º if
+			//2º if - Chamar tela Sobre
 			if(evento.getSource() == subMenuSobre){
 					JOptionPane.showMessageDialog(painelDesktop, "Sistema Biblioteca \n" +"Versão 1.00");
 			}
 
-			//3º if
+			//3º if - Chamar tela Sair
 			if(evento.getSource() == subMenuSair){
 				sairPrograma();
 			}
+			
+			//4º if - Chamar tela Cadastro de veículo
+			if(evento.getSource() == subMenuCadastroVeiculo){
+				if(telaCadastroVeiculo == null){
+					telaCadastroVeiculo = new CadastroVeiculo();
+					painelDesktop.add(telaCadastroVeiculo);
+					telaCadastroVeiculo.setVisible(true);
+				}else{
+					telaCadastroVeiculo.setVisible(true);
+					painelDesktop.moveToFront(telaCadastroVeiculo);
+				}
+			}
+			
+			//5º if - Chamar tela Pesquisa Cliente
+			if(evento.getSource() == subMenuConsultarCliente){
+				if(telaPesquisaCliente == null){
+					telaPesquisaCliente = new PesquisaCliente();
+					painelDesktop.add(telaPesquisaCliente);
+					telaPesquisaCliente.setVisible(true);
+				}else{
+					telaPesquisaCliente.setVisible(true);
+					painelDesktop.moveToFront(telaPesquisaCliente);
+				}
+			}
+			
+			//6º if
 		}//fim do actioPerformed
 	}//fim da inner class
 }//fim da classe

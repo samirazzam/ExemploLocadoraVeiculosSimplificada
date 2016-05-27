@@ -7,3 +7,12 @@ CNH varchar (11),
 nomeCliente varchar(255) not null,
 anoValidadeCNH int not null,
 primary key(CNH));
+create table tbVeiculo (
+placa varchar (7),
+modeloVeiculo varchar(255) not null,
+anoFabricacao int not null,
+primary key(placa));
+alter table tbVeiculo add column alugado boolean;
+
+update tbveiculo set alugado = false where placa = "LKO9966";
+

@@ -9,14 +9,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public abstract class CadastroClienteTemplate extends JInternalFrame{
-	
-	protected JLabel rotNome, rotCNH, rotValidadeCNH;
-	protected JTextField cxNome, cxCNH, cxValidadeCNH;
+public class CadastroVeiculoTemplate extends JInternalFrame {
+
+	protected JLabel rotPlaca, rotModelo, rotAno;
+	protected JTextField cxPlaca, cxModelo, cxAno;
 	protected JButton btnSair;
 	protected JPanel painelSuperior, painelInferior;
 	
-	public CadastroClienteTemplate(String nomeTela) {
+	public CadastroVeiculoTemplate(String nomeTela) {
 		setTitle(nomeTela);
 		setSize(650,200);
 		setLocation(0, 0);
@@ -25,12 +25,12 @@ public abstract class CadastroClienteTemplate extends JInternalFrame{
 		setMaximizable(true);
 		setDefaultCloseOperation(HIDE_ON_CLOSE);
 		
-		rotNome = new JLabel("Nome completo");
-		rotCNH = new JLabel("Nº carteira habilitação");
-		rotValidadeCNH = new JLabel("Ano de validade da CNH");
-		cxNome = new JTextField("");
-		cxCNH = new JTextField("");
-		cxValidadeCNH = new JTextField("");
+		rotPlaca = new JLabel("Placa do veículo");
+		rotModelo = new JLabel("Modelo");
+		rotAno = new JLabel("Ano de fabricação");
+		cxPlaca = new JTextField("");
+		cxModelo = new JTextField("");
+		cxAno = new JTextField("");
 		
 		btnSair = new JButton("Sair");
 		
@@ -41,31 +41,31 @@ public abstract class CadastroClienteTemplate extends JInternalFrame{
 		painelSuperior.setLayout(new GridLayout(3,2,5,5));
 		painelInferior.setLayout(new GridLayout(1,1));
 		
-		painelSuperior.add(rotNome);
-		painelSuperior.add(cxNome);
-		painelSuperior.add(rotCNH);
-		painelSuperior.add(cxCNH);
-		painelSuperior.add(rotValidadeCNH);
-		painelSuperior.add(cxValidadeCNH);
+		painelSuperior.add(rotPlaca);
+		painelSuperior.add(cxPlaca);
+		painelSuperior.add(rotModelo);
+		painelSuperior.add(cxModelo);
+		painelSuperior.add(rotAno);
+		painelSuperior.add(cxAno);
 		
 	}//fim do construtor
 
 	protected void habilitaCampos(){
-		cxNome.setEditable(true);
-		cxCNH.setEditable(true);
-		cxValidadeCNH.setEditable(true);
+		cxPlaca.setEditable(true);
+		cxModelo.setEditable(true);
+		cxAno.setEditable(true);
 	}//fim do método habilitaCampos
 	
 	protected void desabilitaCampos(){
-		cxNome.setEditable(false);
-		cxCNH.setEditable(false);
-		cxValidadeCNH.setEditable(false);
+		cxPlaca.setEditable(false);
+		cxModelo.setEditable(false);
+		cxAno.setEditable(false);
 	}//fim do método desabilitaCampos
 	
 	protected void limparCampos(){
-		cxNome.setText("");
-		cxCNH.setText("");
-		cxValidadeCNH.setText("");
+		cxPlaca.setText("");
+		cxModelo.setText("");
+		cxAno.setText("");
 	}//fim do método limparCampos
 	
 	protected void fechar(){
@@ -73,5 +73,4 @@ public abstract class CadastroClienteTemplate extends JInternalFrame{
 		this.hide();
 	}//fim do método fechar
 	
-}//fim da classe
-
+}//Fim da classe

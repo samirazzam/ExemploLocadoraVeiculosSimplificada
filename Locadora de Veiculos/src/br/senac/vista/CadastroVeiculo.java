@@ -8,16 +8,18 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 import br.senac.jdbc.dao.ClienteDao;
+import br.senac.jdbc.dao.VeiculoDao;
 import br.senac.modelo.Cliente;
+import br.senac.modelo.Veiculo;
 
-public class CadastroCliente extends CadastroClienteTemplate{
-	
+public class CadastroVeiculo extends CadastroVeiculoTemplate{
+
 	protected JButton btnNovo, btnSalvar, btnLimpar, btnCancelar;
-	Cliente novoCliente;
-	ClienteDao clienteDao;
+	Veiculo novoVeiculo;
+	VeiculoDao veiculoDao;
 	
-	public CadastroCliente() {
-		super("Dados cadastrais de cliente");
+	public CadastroVeiculo() {
+		super("Dados cadastrais de veiculo");
 		desabilitaCampos();
 		
 		btnNovo = new JButton("Novo cadastro");
@@ -46,26 +48,26 @@ public class CadastroCliente extends CadastroClienteTemplate{
 	}//fim do construtor
 	
 	//Método para criar um novo registro
-	protected void novoRegistroCliente(){
+	protected void novoRegistroVeiculo(){
 		btnNovo.setEnabled(false);
-		novoCliente = new Cliente();
+		novoVeiculo = new Veiculo();
 		habilitaCampos();
 		limparCampos();
 		btnCancelar.setEnabled(true);
 	}//fim do método novoRegistroCliente
 	
 	//Método para salvar registro
-	protected void salvarRegistroCliente(){
+	protected void salvarRegistroVeiculo(){
 		
-		if(cxCNH.getText().equals("") || cxNome.getText().equals("") || cxValidadeCNH.getText().equals("")){
+		if(cxPlaca.getText().equals("") || cxModelo.getText().equals("") || cxAno.getText().equals("")){
 			JOptionPane.showMessageDialog(this, "Os campos do formulário são de preenchimento obrigatório");
 		}else{
-			novoCliente.setCNH(cxCNH.getText());
-			novoCliente.setAnoValidadeCNH(Integer.parseInt(cxValidadeCNH.getText()));
-			novoCliente.setNome(cxNome.getText());
-			
-			clienteDao = new ClienteDao();
-			clienteDao.gravarCliente(novoCliente, this);
+			novoVeiculo.setPlaca(cxPlaca.getText());
+			novoVeiculo.setModelo(cxModelo.getText());
+			novoVeiculo.setAno(Integer.parseInt(cxAno.getText()));
+		
+			veiculoDao = new VeiculoDao();
+			veiculoDao.gravarVeiculo(novoVeiculo, this);
 			limparCampos();
 			desabilitaCampos();
 			btnNovo.setEnabled(true);
@@ -99,10 +101,10 @@ public class CadastroCliente extends CadastroClienteTemplate{
 				fechar();
 				break;
 			case "Salvar cadastro":
-				salvarRegistroCliente();
+				salvarRegistroVeiculo();
 				break;
 			case "Novo cadastro":
-				novoRegistroCliente();
+				novoRegistroVeiculo();
 				break;
 			case "Limpar campos":
 				limparCampos();
@@ -112,9 +114,8 @@ public class CadastroCliente extends CadastroClienteTemplate{
 			default:
 				break;
 			}
-			
 		}
 		
 	}//fim da inner class
-	
-}//fim da classe CadastroCliente
+
+}//fim da classe principal

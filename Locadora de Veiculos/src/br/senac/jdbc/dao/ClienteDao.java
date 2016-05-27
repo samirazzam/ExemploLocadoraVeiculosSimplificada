@@ -2,6 +2,7 @@ package br.senac.jdbc.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.JInternalFrame;
@@ -47,5 +48,30 @@ public class ClienteDao {
 			System.out.println("Não foi possível fechar a conexão com o banco de dados: " +e.getMessage());
 		}
 	}//fim do método fecharBanco
+	
+	public Cliente buscaPorCNH(JInternalFrame telaChamada, String CNH){
+		String comandoSQL = "select * from tbCliente where cnh = ?";
+		
+		try {
+			PreparedStatement stmt = conexaoBD.prepareStatement(comandoSQL);
+			stmt.setString(1, CNH);
+			ResultSet resultado = stmt.executeQuery();
+			
+			Cliente cliente = new Cliente();
+			if(resultado.first() == true){
+				cliente.setCNH(resultado.getString("CNH"));
+				cliente.setNome(resultado.getString("nomeCliente"));
+				cliente.setAnoValidadeCNH(resultado.getInt("anoValidadeCNH"));
+			}
+			resultado.close();
+			stmt.close();
+			return cliente;
+			
+		} catch (SQLException e) {
+			JOptionPane.showMessageDialog(telaChamada, "Erro na busca: " +e.getMessage());
+			return null;
+		}
+		
+	}//fim do método buscaPorCNH
 
 }//fim da classe
